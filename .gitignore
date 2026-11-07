@@ -1,0 +1,22 @@
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.tmp
+*.exe
+*.dll
+*.pdb
+*.dmp
+*.sav
+*.replay
+.DS_Store
+.vs/
+.vscode/
+__pycache__/
+target/
+# Local game installation metadata
+research/local/

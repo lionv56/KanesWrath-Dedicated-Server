@@ -1,0 +1,40 @@
+name: Project Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Check gateway JavaScript
+        run: |
+          node --check services/gateway/server.js
+          node --check tests/gateway/smoke.test.js
+
+      - name: Check Docker Compose
+        run: docker compose config --quiet
+
+      - name: Run existing GameSpy framing test
+        run: node research/prototypes/gamespy-status/integration.test.js
+
+      - name: Build gateway
+        run: docker compose build gateway
+
+      - name: Start gateway
+        run: docker compose up -d --wait gateway
+
+      - name: Test gateway
+        run: node tests/gateway/smoke.test.js
+
+      - name: Shutdown
+        if: always()
+        run: docker compose down
