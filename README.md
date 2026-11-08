@@ -87,5 +87,11 @@ No unsupported claim of guaranteed crash-free gameplay is made.
 
 ## Status
 
-Planning and research phase.
+Research and bootstrap complete. Issue #4 client connection feasibility
+accepted in a deliberately network-isolated Windows Sandbox (2026-11-08):
+real Kane's Wrath 1.2 client completed SSL3 and exchanged FESL Hello/MemCheck,
+then sent Login to the own local server. A reversible, exact-build runtime
+trust adaptation was required. This is not stock-client trust or proof of
+account authentication, matchmaking, multiplayer, or authoritative gameplay.
 No authoritative game simulation has been validated yet.
+See `research/client-adapter/issue4-acceptance-summary.md` for scope and evidence.

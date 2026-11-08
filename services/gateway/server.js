@@ -2,6 +2,7 @@
 
 const net = require("node:net");
 const http = require("node:http");
+const { createFeslProbe } = require("./fesl-probe");
 
 const HOST = "0.0.0.0";
 const TCP_PORT = 29900;
@@ -64,7 +65,8 @@ const web = http.createServer((req, res) => {
     experimental: true,
     realClientCompatible: false,
     activeConnections,
-    receivedFrames
+    receivedFrames,
+    feslProbe: feslProbe.stats()
   }));
 });
 
@@ -78,11 +80,14 @@ web.on("error", (error) => {
   process.exitCode = 1;
 });
 
+const feslProbe = createFeslProbe();
+feslProbe.listen(18840, HOST);
 tcp.listen(TCP_PORT, HOST);
 web.listen(HTTP_PORT, HOST);
 
 function shutdown() {
   tcp.close();
+  feslProbe.close();
   web.close();
 }
 

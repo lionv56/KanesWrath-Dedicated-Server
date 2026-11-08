@@ -1,0 +1,3 @@
+LIBRARY kwds-adapter
+EXPORTS
+    DetourFinishHelperProcess=_KwdsHelper@16 @1

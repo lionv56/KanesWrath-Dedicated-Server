@@ -5,6 +5,8 @@ services:
     image: kwds-gateway:local
     ports:
       - "127.0.0.1:29901:29900"
+      - "127.0.0.1:18840:18840"
+      - "127.0.0.1:18760:18840"
       - "127.0.0.1:8080:8080"
     restart: unless-stopped
     healthcheck:
